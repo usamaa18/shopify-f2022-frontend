@@ -1,0 +1,17 @@
+:root {
+  --main-color: #b3aca7;
+  --hover-bg-color: #b3aca7;
+  --hover-color: #e2dedb;
+  --border-color: #b3aca7;
+  --main-bg-color: #e2dedb;
+}
+
+.btn-primary {
+  --bs-btn-color: var(--main-color);
+  --bs-btn-bg: var(--main-bg-color);
+  --bs-btn-border-color: var(--border-color);
+  --bs-btn-border-radius: 0;
+  --bs-btn-hover-color: var(--hover-color);
+  --bs-btn-hover-bg: var(--hover-bg-color);
+  --bs-btn-hover-border-color: var(--border-color);
+}

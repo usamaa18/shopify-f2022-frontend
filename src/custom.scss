@@ -1,0 +1,61 @@
+$main-color: #b3aca7;
+$hover-bg-color: #b3aca7;
+$hover-color: #e2dedb;
+$border-color: #b3aca7;
+$main-bg-color: #e2dedb;
+
+// body {
+//   font-family: 'Lato', sans-serif;
+//   background: 
+//   color: var(--main-color);
+// }
+
+//   @media (min-width: 1200px) {
+//     .container {
+//       max-width: 720px;
+//     }
+//   }
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px
+);
+
+
+
+
+
+// Override default variables before the import
+$body-bg: $main-bg-color;
+
+
+$input-border-radius: 0;
+
+textarea {
+    background: transparent;
+    color: #726659 !important;
+}
+
+textarea:hover, select:hover{
+    background: $hover-bg-color !important;
+    color: $hover-color !important;
+
+}
+
+textarea:focus {
+    outline: 0 none !important;
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+
+
+// $input-placeholder-color: $main-color;
+// $input-focus-bg: $hover-bg-color;
+// $input-focus-color: $hover-bg-color;
+// $input-color: $main-color;
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';

@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
-var engines = [ "text-ada-001", "text-davinci-002", "text-curie-001", "text-babbage-001"];
+var engines = ["text-ada-001", "text-davinci-002", "text-curie-001", "text-babbage-001"];
 async function getResponse(prompt, engine) {
   const data = {
     prompt: prompt,
@@ -83,11 +83,13 @@ class App extends React.Component {
             </select>
           </div>
           <div className="mb-3">
-            <textarea className="form-control" placeholder='PROMPT' rows="3" value={this.state.textAreaValue} onChange={this.handleTextAreaChange} required/>
+            <textarea className="form-control" placeholder='PROMPT' rows="3" value={this.state.textAreaValue} onChange={this.handleTextAreaChange} required />
 
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <div className="d-grid gap-2">
 
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </div>
         </form>
 
         {this.state.itemArr.map((element, i) => {
