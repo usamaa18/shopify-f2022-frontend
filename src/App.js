@@ -27,7 +27,6 @@ async function getResponse(prompt, engine) {
   return response.json();
 }
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -36,6 +35,11 @@ class App extends React.Component {
       textAreaValue: "",
       itemArr: []
     }
+    // {
+    //   prompt: "prompt",
+    //     response: "data.choices[0].text",
+    //       engine: "engine"
+    // }
     this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,7 +59,7 @@ class App extends React.Component {
       };
       console.log(newItem);
       this.setState(prevState => ({
-        itemArr: [...prevState.itemArr, newItem]
+        itemArr: [newItem, ...prevState.itemArr]
       }));
     });
 
@@ -73,31 +77,41 @@ class App extends React.Component {
   render() {
 
     return (
-      <div className="">
-        <form onSubmit={this.handleSubmit}>
-          <div className="">
-            <select className="" onChange={this.handleSelectChange} required>
-              {engines.map(element => {
-                return <option key={element}>{element}</option>
-              })}
-            </select>
-          </div>
-          <div className="">
-            <textarea className="" placeholder='PROMPT' rows="3" value={this.state.textAreaValue} onChange={this.handleTextAreaChange} required />
-
-          </div>
-          <div className="">
-
-            <button type="submit" className="">Submit</button>
-          </div>
+      <div className="container mx-auto font-mono text-color2 flex flex-col space-y-8 mt-8 font-['Lato'] font-light px-2 sm:px-4 ">
+        <p className='text-4xl text-center tracking-normal lg:tracking-widest'>FUN WITH AI!</p>
+        <form onSubmit={this.handleSubmit} class="flex flex-col space-y-0 border-2 border-color2 divide-color2 divide-y-2">
+          <select className="w-full m-0 p-4 text-color2 bg-color1 hover:bg-color2 focus:bg-color2 focus:text-color1 hover:text-color1" onChange={this.handleSelectChange} required>
+            {engines.map(element => {
+              return <option key={element}>{element}</option>
+            })}
+          </select>
+          <textarea className="w-full m-0 p-4 outline-0 focus:outline-none placeholder:text-color2 hover:placeholder:text-color1 bg-color1 text-color2 hover:bg-color2 hover:text-color1" placeholder='PROMPT' rows="3" value={this.state.textAreaValue} onChange={this.handleTextAreaChange} required />
+          <button type="submit" className="w-full m-0 p-4 text-color2 hover:bg-color2 hover:text-color1">GO</button>
         </form>
 
-        {this.state.itemArr.map((element, i) => {
-          return <div key={i}>
-            <p>{element.prompt}</p>
-            <p>{element.response}</p>
+        <div className='overflow-y-auto'>
+          <p className='text-xl text-center tracking-normal lg:tracking-widest mb-4'>RESPONSES</p>
+          {this.state.itemArr.length == 0 ? <p className='p-4'>{this.state.itemArr.length == 0 ? "No items" : ""}</p> : <div/>}
+          
+          <div className='space-y-6 mb-6'>
+            {this.state.itemArr.map((element, i) => {
+              return <div key={i} className="border-2 border-color2 p-4 space-y-2">
+                <div className='flex flex-row'>
+                  <p className='basis-1/4 font-bold'>ENGINE</p>
+                  <p className='basis-3/4'>{element.engine}</p>
+                </div>
+                <div className='flex flex-row'>
+                  <p className='basis-1/4 font-bold'>PROMPT</p>
+                  <p className='basis-3/4'>{element.prompt}</p>
+                </div>
+                <div className='flex flex-row'>
+                  <p className='basis-1/4 font-bold'>RESPONSE</p>
+                  <p className='basis-3/4'>{element.response}</p>
+                </div>
+              </div>
+            })}
           </div>
-        })}
+        </div>
       </div>
     );
   }
