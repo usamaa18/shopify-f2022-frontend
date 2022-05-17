@@ -73,22 +73,22 @@ class App extends React.Component {
   render() {
 
     return (
-      <div className="container">
+      <div className="">
         <form onSubmit={this.handleSubmit}>
-          <div className="mb-3 mt-3">
-            <select className="form-select" aria-label="Default select example" onChange={this.handleSelectChange} required>
+          <div className="">
+            <select className="" onChange={this.handleSelectChange} required>
               {engines.map(element => {
                 return <option key={element}>{element}</option>
               })}
             </select>
           </div>
-          <div className="mb-3">
-            <textarea className="form-control" placeholder='PROMPT' rows="3" value={this.state.textAreaValue} onChange={this.handleTextAreaChange} required />
+          <div className="">
+            <textarea className="" placeholder='PROMPT' rows="3" value={this.state.textAreaValue} onChange={this.handleTextAreaChange} required />
 
           </div>
-          <div className="d-grid gap-2">
+          <div className="">
 
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="">Submit</button>
           </div>
         </form>
 
