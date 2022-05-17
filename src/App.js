@@ -1,9 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 
-var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
 var engines = ["text-ada-001", "text-davinci-002", "text-curie-001", "text-babbage-001"];
 async function getResponse(prompt, engine) {
   const data = {
@@ -14,7 +11,7 @@ async function getResponse(prompt, engine) {
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
   };
-
+  // console.log(process.env.REACT_APP_OPENAPI_KEY);
   const response = await fetch("https://api.openai.com/v1/engines/" + engine + "/completions", {
     method: "POST",
     headers: {
@@ -35,11 +32,6 @@ class App extends React.Component {
       textAreaValue: "",
       itemArr: []
     }
-    // {
-    //   prompt: "prompt",
-    //     response: "data.choices[0].text",
-    //       engine: "engine"
-    // }
     this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,7 +42,6 @@ class App extends React.Component {
     event.preventDefault();
     let prompt = this.state.textAreaValue;
     let engine = this.state.selectValue;
-    console.log(prompt);
     getResponse(prompt, engine).then(data => {
       let newItem = {
         prompt: prompt,
@@ -79,7 +70,7 @@ class App extends React.Component {
     return (
       <div className="container mx-auto font-mono text-color2 flex flex-col space-y-8 mt-8 font-['Lato'] font-light px-2 sm:px-4 ">
         <p className='text-4xl text-center tracking-normal lg:tracking-widest'>FUN WITH AI!</p>
-        <form onSubmit={this.handleSubmit} class="flex flex-col space-y-0 border-2 border-color2 divide-color2 divide-y-2">
+        <form onSubmit={this.handleSubmit} className="flex flex-col space-y-0 border-2 border-color2 divide-color2 divide-y-2">
           <select className="w-full m-0 p-4 text-color2 bg-color1 hover:bg-color2 focus:bg-color2 focus:text-color1 hover:text-color1" onChange={this.handleSelectChange} required>
             {engines.map(element => {
               return <option key={element}>{element}</option>
@@ -91,7 +82,7 @@ class App extends React.Component {
 
         <div className='overflow-y-auto'>
           <p className='text-xl text-center tracking-normal lg:tracking-widest mb-4'>RESPONSES</p>
-          {this.state.itemArr.length == 0 ? <p className='p-4'>{this.state.itemArr.length == 0 ? "No items" : ""}</p> : <div/>}
+          {this.state.itemArr.length === 0 ? <p className='p-4'>No items</p> : <div/>}
           
           <div className='space-y-6 mb-6'>
             {this.state.itemArr.map((element, i) => {
