@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        color1: '#e2ded0',
-        color2: '#000040'
-        
+        color1: '#E2DEDB',
+        color2: '#B3ACA7',
+        color3: '#726659'
       },
       screens: {
         'sm': '640px',
